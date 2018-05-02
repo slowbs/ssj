@@ -8,6 +8,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </head>
 <body>
 <?php include 'header.php'; ?>
@@ -15,6 +25,7 @@
   <h2>Hover Rows</h2>
   <table class="table table-hover">
     <thead>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
       <tr>
         <th>Firstname</th>
         <th>Lastname</th>
@@ -22,7 +33,7 @@
         <th>Date</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="myTable">
       <tr>
 <?php
 include 'db.php';
