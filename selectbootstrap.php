@@ -51,7 +51,10 @@ try {
         ?> <td> <?php echo $row['id']; ?> </td>
          <td> <?php echo $row['name']; ?> </td>
          <td> <?php echo $row['price']; ?> </td>
-         <td> <?php echo $row['date']; ?> </td></tr>
+         <td> <?php echo $row['date']; ?> </td>
+         <td><a href="#" class="btn btn-warning" role="button">แก้ไข</a>
+         <a href="#" class="btn btn-danger" role="button">ลบ</a></td>
+         </tr>
 
 <?php 
 }
