@@ -5,7 +5,7 @@
 
 <?php
 echo "<table style='border: solid 1px black;'>";
- echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
+ echo "<tr><th>Id</th><th>ชื่อ - สกุล</th><th>ราคา</th><th>วันที่</th></tr>";
 
 class TableRows extends RecursiveIteratorIterator { 
     function __construct($it) { 
@@ -21,14 +21,16 @@ class TableRows extends RecursiveIteratorIterator {
     } 
 
     function endChildren() { 
+        echo "<td style='width: 100px; border: 1px solid black;'>Delete</td>";
         echo "</tr>" . "\n";
     } 
 } 
 
-$servername = "localhost";
+/*$servername = "localhost";
 $username = "slowbs";
 $password = "sodsongig4";
-$dbname = "ssj";
+$dbname = "ssj";*/
+include 'db.php';
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
@@ -41,6 +43,7 @@ try {
 
     foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
         echo $v;
+  
     }
 }
 catch(PDOException $e) {
@@ -49,6 +52,8 @@ catch(PDOException $e) {
 $conn = null;
 echo "</table>";
 ?> 
-
+<div class="container">
+<a href="insertform.php">insert</a>
+</div>
 </body>
 </html>
