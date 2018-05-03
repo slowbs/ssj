@@ -8,16 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
 </head>
 <body>
 <?php include 'header.php'; ?>
@@ -52,9 +42,11 @@ try {
          <td> <?php echo $row['name']; ?> </td>
          <td> <?php echo $row['price']; ?> </td>
          <td> <?php echo $row['date']; ?> </td>
-         <td><a class="openModal btn btn-warning" data-id="<?php echo $row['id'] ?>" data-toggle="modal" href="#myModal">
-        Hire <?php echo $row['id']; ?>
-         <a href="delete.php?id= <?php echo $row['id']; ?>" class="btn btn-danger" role="button" onclick="return confirm('ยืนยันที่จะลบ?')");>ลบ</a></td>
+         <td><a class="openModal btn btn-warning" data-id="<?php echo $row['id'] ?>" data-toggle="modal" 
+         href="#myModal">
+        แก้ไข</a>
+         <a href="delete.php?id= <?php echo $row['id']; ?>" class="btn btn-danger" role="button" 
+         onclick="return confirm('ยืนยันที่จะลบ?')");>ลบ</a></td>
          </tr>
 <?php 
 }
@@ -64,12 +56,15 @@ catch(PDOException $e) {
 }
 $conn = null;
 ?>
+<!-- Call modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     </div>
   </div>
 </div>
+
+<!--script call modal from id-->
 <script>
   $('.openModal').click(function(){
       var id = $(this).attr('data-id');
@@ -78,5 +73,17 @@ $conn = null;
       }});
   });
 </script>
+<!-- script filter -->
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 </body>
 </html>
