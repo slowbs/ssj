@@ -8,7 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
   <script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
@@ -28,10 +27,10 @@ $(document).ready(function(){
     <thead>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>Date</th>
+        <th>ID</th>
+        <th>ชื่อ - สกุล</th>
+        <th>ราคา</th>
+        <th>วันที่</th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -53,19 +52,31 @@ try {
          <td> <?php echo $row['name']; ?> </td>
          <td> <?php echo $row['price']; ?> </td>
          <td> <?php echo $row['date']; ?> </td>
-         <td><a href="#" class="btn btn-warning" role="button">แก้ไข</a>
+         <td><a class="openModal btn btn-warning" data-id="<?php echo $row['id'] ?>" data-toggle="modal" href="#myModal">
+        Hire <?php echo $row['id']; ?>
          <a href="delete.php?id= <?php echo $row['id']; ?>" class="btn btn-danger" role="button" onclick="return confirm('ยืนยันที่จะลบ?')");>ลบ</a></td>
          </tr>
-
 <?php 
 }
-    
 }
 catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 $conn = null;
 ?>
-
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+<script>
+  $('.openModal').click(function(){
+      var id = $(this).attr('data-id');
+      $.ajax({url:"modal_ajax.php?id="+id,cache:false,success:function(result){
+          $(".modal-content").html(result);
+      }});
+  });
+</script>
 </body>
 </html>
