@@ -6,7 +6,7 @@
 <?php $id = isset($_GET['id']) ? $_GET['id'] : ''; 
      //echo "ID: $id "?>
          <div class="container">
-            <h1>Insert Form</h1>
+            <h1><?php echo "ID: $id" ?> </h1>
             <form action="insert.php" method="POST"> 
                     <div class="form-group">
                       <label for="name">ชื่อ - สกุล</label>
@@ -17,12 +17,9 @@
                       <label for="price">ราคา</label>
                       <input type="text" class="form-control" id="price" placeholder="ราคา" name="price">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-    </div>
-
-</div>
 <div class="modal-footer">
 <button type="submit" class="btn btn-primary">Submit</button>
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </form>
+</div>
 </div>
