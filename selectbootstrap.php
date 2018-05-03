@@ -54,7 +54,7 @@ try {
          <td> <?php echo $row['price']; ?> </td>
          <td> <?php echo $row['date']; ?> </td>
          <td><a href="#" class="btn btn-warning" role="button">แก้ไข</a>
-         <a href="delete.php?id= <?php echo $row['id']; ?>" class="btn btn-danger" role="button">ลบ</a></td>
+         <a href="delete.php?id= <?php echo $row['id']; ?>" class="btn btn-danger" role="button" onclick="return confirm('ยืนยันที่จะลบ?')");>ลบ</a></td>
          </tr>
 
 <?php 
