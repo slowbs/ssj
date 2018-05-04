@@ -7,7 +7,7 @@
      //echo "ID: $id "?>
          <div class="container">
             <h1><?php echo "ID: $id" ?> </h1>
-<form action="insert.php" method="POST"> 
+<form action="update.php?id= <?php echo $id ?>" method="POST"> 
 <?php
 include 'db.php';
 $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -24,7 +24,9 @@ try {
     foreach($result as $row){ ?>
           <label for="name">ชื่อ - สกุล</label>
           <input type="text" class="form-control" name="name" value="<?php echo $row['name'] ?>">
+          <label for="price">ราคา</label>
           <input type="text" class="form-control" name="price" value="<?php echo $row['price'] ?>">
+          <label for="date">วันที่</label>
           <input type="text" class="form-control" name="date" value="<?php echo $row['date'] ?>">
 <?php
 }
