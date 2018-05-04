@@ -8,22 +8,33 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+  <script type="text/javascript">
+            //คำสั่ง Jquery เริ่มทำงาน เมื่อ โหลดหน้า Page เสร็จ 
+            $(function(){
+                //กำหนดให้  Plug-in dataTable ทำงาน ใน ตาราง Html ที่มี id เท่ากับ example
+                $('#example').dataTable();
+            });
+        </script>
+  
 </head>
 <body>
 <?php include 'header.php'; ?>
-<div class="container">
+<div class="container-fluid">
   <h2>Hover Rows</h2>
-  <table class="table table-hover">
+  <table class="table table-hover" id="example">
+    <!--<input class="form-control" id="myInput" type="text" placeholder="Search..">-->
     <thead>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
       <tr>
         <th>ID</th>
         <th>ชื่อ - สกุล</th>
         <th>ราคา</th>
         <th>วันที่</th>
+        <th>test</th>
       </tr>
-    </thead>
-    <tbody id="myTable">
+      </thead>
+      <tbody>
       <tr>
 <?php
 include 'db.php';
@@ -48,6 +59,7 @@ try {
          <a href="delete.php?id= <?php echo $row['id']; ?>" class="btn btn-danger" role="button" 
          onclick="return confirm('ยืนยันที่จะลบ?')");>ลบ</a></td>
          </tr>
+         
 <?php 
 }
 }
@@ -56,6 +68,9 @@ catch(PDOException $e) {
 }
 $conn = null;
 ?>
+</tbody>
+</table>
+
 <!-- Call modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -74,16 +89,6 @@ $conn = null;
   });
 </script>
 <!-- script filter -->
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
 
 </body>
 </html>
