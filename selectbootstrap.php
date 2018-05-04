@@ -10,14 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
   <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-  <script type="text/javascript">
-            //คำสั่ง Jquery เริ่มทำงาน เมื่อ โหลดหน้า Page เสร็จ 
-            $(function(){
-                //กำหนดให้  Plug-in dataTable ทำงาน ใน ตาราง Html ที่มี id เท่ากับ example
-                $('#example').dataTable();
-            });
-        </script>
-  
+ 
 </head>
 <body>
 <?php include 'header.php'; ?>
@@ -88,7 +81,10 @@ $conn = null;
       }});
   });
 </script>
-<!-- script filter -->
+
+  <script>
+                $('#example').dataTable();
+  </script>
 
 </body>
 </html>
